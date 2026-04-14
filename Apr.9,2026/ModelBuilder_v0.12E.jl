@@ -32,7 +32,7 @@
 #     (pair_start[s]..pair_start[s+1]-1) — no race conditions across threads.
 #   - cols_buffer, vals_buffer, agg_cols, agg_vals: per-thread — no sharing.
 
-function ModelBuilder(Data::DefMDPData, Info::DefMDPInfo)
+function ModelBuilder(Data::DefMDPData, Info::DefMDPInfoE)
 
     A  = length(Info.Alt)
     S  = Info.Nₛ

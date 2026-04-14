@@ -85,7 +85,7 @@ function PrintMemoryEstimate(Data::DefMDPData, Info::DefMDPInfo)
 end
 
 # ── Core Model Function ───────────────────────────────────────────────────────────────────────
-function MDP_JRP_AM_v0_12E(Data::DefMDPData, Info::DefMDPInfo)
+function MDP_JRP_AM_v0_12E(Data::DefMDPData, Info::DefMDPInfoE)
 
     # Define available actions
     AltDefine(Data, Info)

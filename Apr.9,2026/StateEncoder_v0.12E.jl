@@ -18,7 +18,7 @@
 #   making `!false` == true. The in-transit ordering constraint is therefore NEVER enforced —
 #   only the MaxI capacity bound applies. This preserves v0.3E behavior intentionally.
 
-function StateEncoder(Data::DefMDPData, Info::DefMDPInfo)
+function StateEncoder(Data::DefMDPData, Info::DefMDPInfoE)
 
     idxS = 1
 

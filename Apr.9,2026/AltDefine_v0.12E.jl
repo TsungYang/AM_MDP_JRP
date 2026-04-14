@@ -3,7 +3,7 @@
 #   - Eliminates IdxA counter variable.
 #   - AltReverse still a Dict (keyed by NTuple, only used in heuristics — not the hot loop).
 
-function AltDefine(Data::DefMDPData, Info::DefMDPInfo)
+function AltDefine(Data::DefMDPData, Info::DefMDPInfoE)
 
     # Loop to generate all possible alternatives constrained by the capacity (area)
     # ***Assuming no stacking***

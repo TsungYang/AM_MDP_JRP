@@ -26,7 +26,7 @@
 #include("HeuristicA_v0.12E.jl")
 #include("HeuristicB_v0.12E.jl")
 
-function Optimizer(Data::DefMDPData, Info::DefMDPInfo)
+function Optimizer(Data::DefMDPData, Info::DefMDPInfoE)
 
     # Initialize output matrices
     Info.Value    = zeros(Float64, Info.Nₛ, Data.Period+1)
