@@ -43,7 +43,7 @@ include("Optimizer_v0.12E.jl")
 # Call after AltDefine + StateEncoder (so Nₛ and AltAvail are populated).
 # Estimates heap memory that ModelBuilder will allocate under CSR flat-array layout.
 # State space for v0.12E is larger than v0.11 (8D vs 4D state) due to in-transit dimensions.
-function PrintMemoryEstimate(Data::DefMDPData, Info::DefMDPInfo)
+function PrintMemoryEstimate(Data::DefMDPData, Info::DefMDPInfoE)
     S           = Info.Nₛ
     ND          = length(Data.D)
     A           = length(Info.Alt)
