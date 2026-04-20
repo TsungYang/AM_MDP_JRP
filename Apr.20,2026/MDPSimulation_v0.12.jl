@@ -6,6 +6,8 @@ using Random, Distributions, Combinatorics, DSP
 #include("HeuristicC1_v0.12.1.jl")
 include("HeuristicC2.5_v0.12.1.jl")
 include("HeuristicC3_v0.12.1.jl")
+include("Initialization_v0.12.jl")
+include("Initialization_v0.12E.jl")
 
 
 # Define the mechanism for replenshiment of TM
@@ -389,7 +391,7 @@ function MDPSimAMS(Data::DefMDPData, Info::DefMDPInfo, SimPeriod::Int64, BS::Vec
 end
 
 # Define the simulation function for pure base stock policy
-function MDPSimE(Data::DefMDPData, Info::DefMDPInfo, SimPeriod::Int64, BS::Vector{Int64}, InitBS::Vector{Int64}, SLT::Int64)
+function MDPSimE(Data::DefMDPData, Info::DefMDPInfoE, SimPeriod::Int64, BS::Vector{Int64}, InitBS::Vector{Int64}, SLT::Int64)
 
     seed = [1233, 8907, 234359, 9790223]     # Seeds for random number generators for the demand of each item
     DGen = []
@@ -441,6 +443,7 @@ function MDPSimE(Data::DefMDPData, Info::DefMDPInfo, SimPeriod::Int64, BS::Vecto
 
         # Get the action from the Optimal policy
         state = (InvLvlA..., InTransit...)
+        #println("state: $state")
         #println("Period: $CyclePeriod")
         if CyclePeriod == 0
             a = Info.Decision[Info.StSp[state], CyclePeriod + 2]
@@ -500,7 +503,8 @@ function MDPSimE(Data::DefMDPData, Info::DefMDPInfo, SimPeriod::Int64, BS::Vecto
         # Update inventory level for the next period
         InvLvl = max.(InvLvl .- demand .+ InTransit, Data.MinI)
         ReplPeriod -= 1
-        InTransit = a
+        InTransit = Prod
+        #println("in-transit: $InTransit")
         
         if any((InvLvl .- BS) .> 0)
             #println("Exceeding base stock level ($BS)!")

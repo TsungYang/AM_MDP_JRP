@@ -20,8 +20,8 @@ mutable struct DefMDPData
     PeriodE::Int64                           # Shipment time for the emergency shipment 
     Cap::Int64                  # The maximum number of products can be built in a single layer
     BH::NTuple{4, Int64}                   # Build height for each item
-    DPattern::Vector{NTuple{3, Int64}}        # Demand Pattern for each item
-    ProbDPattern::Vector{NTuple{3, Float64}}    # Probability Distribution for each item's demand pattern
+    DPattern::Vector{NTuple{2, Int64}}        # Demand Pattern for each item
+    ProbDPattern::Vector{NTuple{2, Float64}}    # Probability Distribution for each item's demand pattern
     D::Vector{NTuple{4, Int64}}                   # Demand Distribution 
     ProbD::Vector{Float64}                # Probability of each demand pattern
 end
@@ -29,7 +29,7 @@ end
 # Define a function to create the data structure
 function CreateMDPData(MaxI::NTuple)
     Nᵢ = 4
-    Period = 5
+    Period = 7
     MinI = (-2, -2, -2, -2)
     #MaxI = (5, 7, 6, 3)
     c = 5.0
@@ -43,10 +43,10 @@ function CreateMDPData(MaxI::NTuple)
     PeriodE = 2
     Cap = 10
     BH = (2, 2, 1, 1)
-    DPattern = [(0, 1, 2), (0, 1, 2), (0, 1, 2), (0, 1, 2)]
-    ProbDPattern = [(0.5, 0.3, 0.2), (0.3, 0.1, 0.6), (0.4, 0.3, 0.3), (0.3, 0.5, 0.2)]
-    #DPattern = [(0, 1), (0, 1), (0, 1), (0, 1)]
-    #ProbDPattern = [(0.5, 0.5), (0.3, 0.7), (0.4, 0.6), (0.8, 0.2)]
+    #DPattern = [(0, 1, 2), (0, 1, 2), (0, 1, 2), (0, 1, 2)]
+    #ProbDPattern = [(0.5, 0.3, 0.2), (0.3, 0.1, 0.6), (0.4, 0.3, 0.3), (0.3, 0.5, 0.2)]
+    DPattern = [(0, 1), (0, 1), (0, 1), (0, 1)]
+    ProbDPattern = [(0.5, 0.5), (0.3, 0.7), (0.4, 0.6), (0.8, 0.2)]
     D = Vector{NTuple{4, Int64}}()        # Create an array to store tuples of demand patterns
     ProbD = Float64[]   # Create an array to store the probability (Float64) of each demand pattern
     

@@ -8,6 +8,8 @@ include("MDP_JRP_AM_M_v0.12.jl")
 include("MDP_JRP_AM_S_v0.12.jl")
 include("MDPSimulation_v0.12.jl")
 include("MDP_JRP_AM_v0.12E.jl")
+include("Initialization_v0.12.jl")
+include("Initialization_v0.12E.jl")
 
 # Define a function to run the experiment
 function MDPExp()
@@ -48,7 +50,7 @@ function MDPExp()
         push!(ResultsDf, (BSLvl, Tuple(BS), AvgTotalCost, AvgInvLvl, AvgStockout, AvgDemand, β, TotalCount))
     end
     # Save the results to a CSV file
-    CSV.write("MDPExp12LT$(LT).csv", ResultsDf)
+    CSV.write("MDP2Exp12LT$(LT).csv", ResultsDf)
     println("Results Exported to CSV File... \n")
 end
 
@@ -112,7 +114,7 @@ function MDPExpAMM()
             Tuple(AvgBkCost), Tuple(AvgLsCost), AvgProductionCost, AvgPowderCost, Tuple(AvgInv), Tuple(AvgBk), Tuple(AvgLs),  TotalCount))
     end
     # Save the results to a CSV file
-    CSV.write("MDPExp12AMMLT$(LT)_Cmplt.csv", ResultsDf)
+    CSV.write("MDP2Exp12AMMLT$(LT)_Cmplt.csv", ResultsDf)
     println("Results Exported to CSV File... \n")
 end
 
@@ -176,7 +178,7 @@ function MDPExpAMS()
             Tuple(AvgBkCost), Tuple(AvgLsCost), AvgProductionCost, AvgPowderCost, Tuple(AvgInv), Tuple(AvgBk), Tuple(AvgLs),  TotalCount))
     end
     # Save the results to a CSV file
-    CSV.write("MDPExp12AMSLT$(LT)_Cmplt.csv", ResultsDf)
+    CSV.write("MDP2Exp12AMSLT$(LT)_Cmplt.csv", ResultsDf)
     println("Results Exported to CSV File... \n")
 end
 
@@ -210,9 +212,9 @@ function MDPExpE()
     InitInfo = CreateMDPInfoE()
     InitData = CreateMDPData(Tuple(InitBS))
     Info, Data = MDP_JRP_AM_v0_12E(InitData, InitInfo)
-    #BSLvlList = push!([0.1:0.1:0.9;], 0.95, 0.99, 0.999)
-    BSLvlList = [0.05]
-    #pushfirst!(BSLvlList, 0.05)
+    BSLvlList = push!([0.1:0.1:0.9;], 0.95, 0.99, 0.999)
+    #BSLvlList = [0.05]
+    pushfirst!(BSLvlList, 0.05)
     for BSLvl in BSLvlList
         BS = BSCal(Data, BSLvl, LT)
     
@@ -241,7 +243,7 @@ function MDPExpE()
             Tuple(AvgBkCost), Tuple(AvgLsCost), AvgProductionCost, AvgPowderCost, Tuple(AvgInv), Tuple(AvgBk), Tuple(AvgLs),  TotalCount))
     end
     # Save the results to a CSV file
-    CSV.write("MDPExp12ELT$(LT)_Cmplt.csv", ResultsDf)
+    CSV.write("MDP2Exp12ELT$(LT)_Cmplt.csv", ResultsDf)
     println("Results Exported to CSV File... \n")
 end
 
@@ -311,7 +313,7 @@ function MDPExpAMHu()
             Tuple(AvgBkCost), Tuple(AvgLsCost), AvgProductionCost, AvgPowderCost, Tuple(AvgInv), Tuple(AvgBk), Tuple(AvgLs),  TotalCount))
     end
     # Save the results to a CSV file
-    CSV.write("MDPExp12AMC2.5LT$(LT)V2_Cmplt.csv", ResultsDf)
+    CSV.write("MDP2Exp12AMC2.5LT$(LT)V2_Cmplt.csv", ResultsDf)
     println("Results Exported to CSV File... \n")
 end
 
@@ -319,5 +321,5 @@ println("Threads available: ", Threads.nthreads())
 #@time MDPExp()
 #@time MDPExpAMM()
 #@time MDPExpAMS()
-#@time MDPExpE()
-@time MDPExpAMHu()
+@time MDPExpE()
+#@time MDPExpAMHu()
