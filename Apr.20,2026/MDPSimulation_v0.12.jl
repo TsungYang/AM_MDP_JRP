@@ -474,8 +474,8 @@ function MDPSimE(Data::DefMDPData, Info::DefMDPInfoE, SimPeriod::Int64, BS::Vect
         Stockout = demand .- max.(min.(demand, InvLvl), 0)
         LostSales = max.(abs.(min.(InvLvl .- demand, 0)) .- abs.(Data.MinI), 0)
         Prod = Info.Alt[a]
-        Production = (any(Prod .> 0) ? 1 : 0)
-        Powder = maximum((Prod .> 0) .* Data.BH)
+        Production = sum(Prod .* Data.w)*Data.v # Production cost represents shipment cost here
+        Powder = 0
 
         # Calculate the cost for each component (quantity * cost/unit)
         InvCost = Inv .* Data.h

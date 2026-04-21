@@ -318,8 +318,8 @@ function MDPExpAMHu()
 end
 
 println("Threads available: ", Threads.nthreads())
-@time MDPExp()
+#@time MDPExp()
 #@time MDPExpAMM()
 #@time MDPExpAMS()
-#@time MDPExpE()
+@time MDPExpE()
 #@time MDPExpAMHu()

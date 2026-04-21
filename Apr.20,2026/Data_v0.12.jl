@@ -39,7 +39,7 @@ function CreateMDPData(MaxI::NTuple)
     ls = (50, 50, 50, 50)
     ep = (5, 10, 15, 20)
     w = (2, 2, 1, 1)
-    v = 10
+    v = 2
     PeriodE = 2
     Cap = 10
     BH = (2, 2, 1, 1)
